@@ -6,12 +6,9 @@ class UnpublishedPages < ::Middleman::Extension
     super
   end
 
-  def after_configuration
-  end
-
   def manipulate_resource_list(resources)
-    resources.reject { |resource| resource.metadata[:page]['published'] == false }
+    resources.reject { |resource| resource.metadata[:page][:published] == false }
   end
 end
 
-UnpublishedPages.register(:unpublished_pages)
+::Middleman::Extensions.register(:unpublished_pages, UnpublishedPages)
